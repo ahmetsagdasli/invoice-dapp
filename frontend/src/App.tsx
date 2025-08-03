@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
 import useBlockchain from './hooks/useBlockchain';
 import useInvoices from './hooks/useInvoices';
 import Button from './components/UI/Button';
+import AddInvoice from './components/AddInvoice';
 import './App.css';
 
 // Components
@@ -16,7 +17,7 @@ const Header: React.FC<{
   <header className="app-header">
     <div className="header-content">
       <div className="header-left">
-        <h1>Ì∑æ Invoice DApp</h1>
+        <h1>ÔøΩÔøΩÔøΩ Invoice DApp</h1>
         <p>Modern Blockchain-based Invoice Management System</p>
         <p>Developer: <strong>ahmetsagdasli</strong> | {new Date().toLocaleDateString()}</p>
       </div>
@@ -29,7 +30,7 @@ const Header: React.FC<{
               <p><strong>Balance:</strong> {parseFloat(balance).toFixed(4)} ETH</p>
             </div>
             <Button variant="outline" onClick={onDisconnect}>
-              Ì¥å Disconnect
+              ÔøΩÔøΩÔøΩ Disconnect
             </Button>
           </div>
         ) : (
@@ -39,7 +40,7 @@ const Header: React.FC<{
             isLoading={isLoading}
             size="lg"
           >
-            Ì∂ä Connect MetaMask
+            ÔøΩÔøΩÔøΩ Connect MetaMask
           </Button>
         )}
       </div>
@@ -69,17 +70,17 @@ const Dashboard: React.FC<{
         {/* Stats Cards */}
         <div className="stats-grid">
           <div className="stat-card">
-            <h3>Ì≥ä Total Invoices</h3>
+            <h3>ÔøΩÔøΩÔøΩ Total Invoices</h3>
             <p className="stat-number">{totalInvoices}</p>
           </div>
           
           <div className="stat-card">
-            <h3>Ì±§ Your Invoices</h3>
+            <h3>ÔøΩÔøΩÔøΩ Your Invoices</h3>
             <p className="stat-number">{invoices.filter(inv => inv.owner.toLowerCase() === account.toLowerCase()).length}</p>
           </div>
           
           <div className="stat-card">
-            <h3>Ì≤∞ Total Value</h3>
+            <h3>ÔøΩÔøΩÔøΩ Total Value</h3>
             <p className="stat-number">
               {invoices.reduce((sum, inv) => sum + parseFloat(inv.amount), 0).toFixed(2)} ETH
             </p>
@@ -92,14 +93,19 @@ const Dashboard: React.FC<{
             variant={viewMode === 'all' ? 'primary' : 'outline'}
             onClick={() => setViewMode('all')}
           >
-            Ì≥ã All Invoices
+            üìã All Invoices
           </Button>
           <Button 
             variant={viewMode === 'user' ? 'primary' : 'outline'}
             onClick={() => setViewMode('user')}
           >
-            Ì±§ My Invoices
+            üë§ My Invoices
           </Button>
+          <Link to="/add-invoice">
+            <Button variant="primary">
+              ‚ûï Add New Invoice
+            </Button>
+          </Link>
         </div>
 
         {/* Invoices List */}
@@ -113,7 +119,7 @@ const Dashboard: React.FC<{
             </div>
           ) : invoices.length === 0 ? (
             <div className="empty-state">
-              <h3>Ì≥Ñ No invoices found</h3>
+              <h3>ÔøΩÔøΩÔøΩ No invoices found</h3>
               <p>Create your first invoice to get started!</p>
             </div>
           ) : (
@@ -155,20 +161,20 @@ const WelcomeScreen: React.FC<{ onConnect: () => void; isLoading: boolean }> = (
   <main className="welcome-screen">
     <div className="container">
       <div className="welcome-content">
-        <h2>Ì∫Ä Welcome to Invoice DApp</h2>
+        <h2>ÔøΩÔøΩÔøΩ Welcome to Invoice DApp</h2>
         <p>Connect your MetaMask wallet to start managing invoices on the blockchain</p>
         
         <div className="features-grid">
           <div className="feature-card">
-            <h3>Ì¥í Secure</h3>
+            <h3>ÔøΩÔøΩÔøΩ Secure</h3>
             <p>All invoices are stored securely on the blockchain</p>
           </div>
           <div className="feature-card">
-            <h3>Ìºê Decentralized</h3>
+            <h3>ÔøΩÔøΩÔøΩ Decentralized</h3>
             <p>No central authority controls your data</p>
           </div>
           <div className="feature-card">
-            <h3>Ì≤® Fast</h3>
+            <h3>ÔøΩÔøΩÔøΩ Fast</h3>
             <p>Quick transactions with low fees</p>
           </div>
         </div>
@@ -179,7 +185,7 @@ const WelcomeScreen: React.FC<{ onConnect: () => void; isLoading: boolean }> = (
           onClick={onConnect} 
           isLoading={isLoading}
         >
-          Ì∂ä Connect MetaMask to Get Started
+          ÔøΩÔøΩÔøΩ Connect MetaMask to Get Started
         </Button>
       </div>
     </div>
@@ -252,6 +258,20 @@ const App: React.FC = () => {
                 />
               )
             } 
+          />
+          <Route 
+            path="/add-invoice" 
+            element={
+              isConnected && account && contract ? (
+                <AddInvoice contract={contract} account={account} />
+              ) : (
+                <Navigate to="/" replace />
+              )
+            } 
+          />
+          <Route 
+            path="/add-invoice-dev" 
+            element={<AddInvoice contract={null} account="0x1234567890123456789012345678901234567890" />}
           />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
