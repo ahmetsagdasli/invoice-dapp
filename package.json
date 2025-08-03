@@ -1,0 +1,23 @@
+{
+  "name": "invoice-dapp-monorepo",
+  "version": "1.0.0",
+  "description": "Modern Invoice Management DApp - Ethereum, React, Node.js",
+  "author": "ahmetsagdasli",
+  "license": "MIT",
+  "scripts": {
+    "install-all": "npm install && npm run install-contracts && npm run install-backend && npm run install-frontend",
+    "install-contracts": "cd contracts && npm install",
+    "install-backend": "cd backend && npm install", 
+    "install-frontend": "cd frontend && npm install",
+    "start": "concurrently \"npm run contracts\" \"npm run backend\" \"npm run frontend\"",
+    "contracts": "cd contracts && npx hardhat node",
+    "deploy": "cd contracts && npx hardhat run scripts/deploy.js --network localhost",
+    "backend": "cd backend && npm start",
+    "frontend": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "test": "cd contracts && npx hardhat test"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}

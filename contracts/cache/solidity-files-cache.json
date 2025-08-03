@@ -1,0 +1,40 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "C:\\Users\\Administrator.DESKTOP-ND2C00C\\Desktop\\apps\\invoice-app\\contracts\\contracts\\InvoiceManager.sol": {
+      "lastModificationDate": 1754233406654,
+      "contentHash": "bf63ccdea4c986b52ecf79dd0f3098ee",
+      "sourceName": "contracts/InvoiceManager.sol",
+      "solcConfig": {
+        "version": "0.8.19",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.19"
+      ],
+      "artifacts": [
+        "InvoiceManager"
+      ]
+    }
+  }
+}
