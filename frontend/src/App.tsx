@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate, Link } from 'react-ro
 import useBlockchain from './hooks/useBlockchain';
 import useInvoices from './hooks/useInvoices';
 import Button from './components/UI/Button';
+// @ts-ignore - JSX component in TypeScript project
 import AddInvoice from './components/AddInvoice';
 import './App.css';
 
@@ -202,8 +203,7 @@ const App: React.FC = () => {
     isLoading,
     error,
     connectWallet,
-    disconnectWallet,
-    checkNetwork
+    disconnectWallet
   } = useBlockchain();
 
   const { getTotalInvoices } = useInvoices(contract);
