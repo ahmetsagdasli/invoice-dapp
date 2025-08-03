@@ -21,7 +21,7 @@ const AddInvoice = ({ contract, account }) => {
     // Ethereum address validation
     if (!formData.recipient) {
       newErrors.recipient = 'Alıcı adresi zorunludur';
-    } else if (!ethers.utils.isAddress(formData.recipient)) {
+    } else if (!ethers.isAddress(formData.recipient)) {
       newErrors.recipient = 'Geçerli bir Ethereum adresi giriniz';
     }
     
@@ -68,7 +68,7 @@ const AddInvoice = ({ contract, account }) => {
       
       const tx = await contract.createInvoice(
         formData.recipient,
-        ethers.utils.parseEther(formData.amount),
+        ethers.parseEther(formData.amount),
         formData.description,
         Math.floor(new Date(formData.dueDate).getTime() / 1000)
       );

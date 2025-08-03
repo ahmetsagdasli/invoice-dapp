@@ -269,10 +269,6 @@ const App: React.FC = () => {
               )
             } 
           />
-          <Route 
-            path="/add-invoice-dev" 
-            element={<AddInvoice contract={null} account="0x1234567890123456789012345678901234567890" />}
-          />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
 
