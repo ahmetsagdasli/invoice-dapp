@@ -7,7 +7,7 @@
   "scripts": {
     "install-all": "npm install && npm run install-contracts && npm run install-backend && npm run install-frontend",
     "install-contracts": "cd contracts && npm install",
-    "install-backend": "cd backend && npm install", 
+    "install-backend": "cd backend && npm install",
     "install-frontend": "cd frontend && npm install",
     "start": "concurrently \"npm run contracts\" \"npm run backend\" \"npm run frontend\"",
     "contracts": "cd contracts && npx hardhat node",
@@ -18,6 +18,8 @@
     "test": "cd contracts && npx hardhat test"
   },
   "devDependencies": {
-    "concurrently": "^8.2.0"
+    "@nomicfoundation/hardhat-toolbox": "^6.1.0",
+    "concurrently": "^8.2.0",
+    "hardhat": "^2.26.1"
   }
 }
